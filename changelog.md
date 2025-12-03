@@ -1,3 +1,6 @@
+# 2.7.5
+
+Updated for patch 11.2.7.
 
 - *Fixed error when unable to gather all player data.*
 
