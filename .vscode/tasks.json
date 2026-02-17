@@ -3,8 +3,7 @@
     // for the documentation about the tasks.json format
     "version": "2.0.0",
     "presentation": {
-        "showReuseMessage": false,
-        "clear": true
+        "close": true
     },
     "tasks": [
         {
@@ -29,6 +28,7 @@
             "label": "Deploy All (no clean)",
             "dependsOn": [
                 "Deploy Classic",
+                "Deploy Anniversary",
                 "Deploy Prog",
                 "Deploy"
             ],
@@ -40,6 +40,7 @@
             "dependsOn": [
                 "Deploy PTR",
                 "Deploy Prog PTR",
+                "Deploy Classic Beta",
                 "Deploy Classic PTR"
             ],
             "dependsOrder": "parallel",
@@ -49,6 +50,11 @@
             "label": "Deploy Classic",
             "type": "shell",
             "command": "sh .scripts/deploy.sh -c",
+        },
+        {
+            "label": "Deploy Anniversary",
+            "type": "shell",
+            "command": "sh .scripts/deploy.sh -a",
         },
         {
             "label": "Deploy Prog",
@@ -69,17 +75,29 @@
         {
             "label": "Deploy Prog PTR",
             "type": "shell",
-            "command": "sh .scripts/deploy.sh -z",
+            "command": "sh",
+            "args": [
+                ".scripts/deploy.sh",
+                "-z"
+            ]
         },
         {
             "label": "Deploy Classic PTR",
             "type": "shell",
-            "command": "sh .scripts/deploy.sh -x",
+            "command": "sh",
+            "args": [
+                ".scripts/deploy.sh",
+                "-x"
+            ]
         },
         {
             "label": "Deploy Classic Beta",
             "type": "shell",
-            "command": "sh .scripts/deploy.sh -b",
+            "command": "sh",
+            "args": [
+                ".scripts/deploy.sh",
+                "-d"
+            ]
         },
         {
             "label": "Clean tmp",
@@ -91,67 +109,5 @@
             ],
             "hide": true
         },
-        {
-            "label": "Build and Release",
-            "type": "shell",
-            "command": ".scripts\\build.sh",
-            "hide": true
-        },
-        {
-            "label": "Busted All",
-            "type": "shell",
-            "command": "busted",
-            "group": {
-                "kind": "test",
-                "isDefault": true
-            },
-            "windows": {
-                "args": [
-                    "--lpath=${workspaceFolder}\\RCLootCouncil\\__tests\\?.lua",
-                    "--helper=${workspaceFolder}\\.specs\\ClassicEnvironment.lua",
-                    "-C=${workspaceFolder}\\RCLootCouncil",
-                    "-f=${workspaceFolder}\\.busted"
-                ]
-            },
-            "args": [
-                "--lpath=${workspaceFolder}/RCLootCouncil/__tests/?.lua",
-                "--helper=${workspaceFolder}/.specs/ClassicEnvironment.lua",
-                "-C=${workspaceFolder}\\RCLootCouncil",
-                "-f=${workspaceFolder}\\.busted"
-            ]
-        },
-        {
-            "label": "Busted this file",
-            "type": "shell",
-            "command": "busted",
-            "args": [
-                "--lpath=${workspaceFolder}/RCLootCouncil/__tests/?.lua",
-                "--helper=${workspaceFolder}/.specs/ClassicEnvironment.lua",
-                "-C=${workspaceFolder}\\RCLootCouncil",
-                "-f=${workspaceFolder}\\.busted",
-                "-v",
-                "${file}",
-            ],
-            "windows": {
-                "args": [
-                    "--lpath=${workspaceFolder}\\RCLootCouncil\\__tests\\?.lua",
-                    "--helper=${workspaceFolder}\\.specs\\ClassicEnvironment.lua",
-                    "-C=${workspaceFolder}\\RCLootCouncil",
-                    "-f=${workspaceFolder}\\.busted",
-                    "-v",
-                    "${file}",
-                ],
-            },
-            "group": "test"
-        },
-        {
-            "label": "Busted List Tests",
-            "type": "shell",
-            "command": "busted",
-            "args": [
-                "-l"
-            ],
-            "group": "test"
-        }
     ]
 }

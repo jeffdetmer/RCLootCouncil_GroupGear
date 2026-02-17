@@ -1,4 +1,4 @@
-#!/bin/bash
+#!usr/bin/sh
 # This file will copy files located in the toplevel folder of the caller, and paste them in WoW Addon directory.
 # Assumes a ".env" located next to this file or at top level which contains a variable "WOW_LOCATION" pointing
 # to the WoW install location. It also assumes the toplevel folder is named after the addon.
@@ -11,9 +11,10 @@ echo "Executing $0" >&2
 
 # Process command-line options
 usage() {
-	echo "Usage: test.sh [-cbdzxp]" >&2
-	echo "  -c               Pack to _classic_era_ WoW edition. (Classic)" >&2
+	echo "Usage: test.sh [-abcdzxp]" >&2
+	echo "  -a               Pack to _anniversary_ WoW edition. (TBC)" >&2
 	echo "  -b               Pack to _classic_ WoW edition. (Prog)" >&2
+	echo "  -c               Pack to _classic_era_ WoW edition. (Classic)" >&2
 	echo "  -d               Pack to _classic_beta_ WoW edition." >&2
 	echo "  -z               Pack to _classic_ptr_ WoW edition. (Prog PTR)" >&2
 	echo "  -x               Pack to _classic_era_ptr_ WoW edition. (Classic PTR)" >&2
@@ -23,25 +24,28 @@ usage() {
 ADDON_LOC="$(pwd)"
 ADDON="$(basename $ADDON_LOC)"
 WOWEDITION="_retail_"
-is_classic=false
+
 # Commandline inputs
-while getopts ":cbdzxp" opt; do
+while getopts ":acbdzxp" opt; do
 	case $opt in
+      a)
+         WOWEDITION="_anniversary_"
+         is_classic="true";;
       c)
          WOWEDITION="_classic_era_"
-         is_classic=true;;
+         is_classic="true";;
       b)
          WOWEDITION="_classic_"
-         is_classic=true;;
+         is_classic="true";; 
       d)
          WOWEDITION="_classic_beta_"
-         is_classic=true;;
+         is_classic="true";;
       z)
          WOWEDITION="_classic_ptr_"
-         is_classic=true;;
+         is_classic="true";;
       x)
          WOWEDITION="_classic_era_ptr_"
-         is_classic=true;;
+         is_classic="true";;
       p)
          WOWEDITION="_ptr_";;
       /?)
