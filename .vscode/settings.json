@@ -41,22 +41,22 @@
     ],
     "Lua.runtime.version": "Lua 5.1",
     "Lua.runtime.builtin": {
-        "basic": "disable",
-        "debug": "disable",
+        "basic": "enable",
+        "debug": "enable",
         "io": "disable",
         "math": "disable",
         "os": "disable",
         "package": "disable",
-        "string": "disable",
-        "table": "disable",
-        "utf8": "disable"
+        "string": "enable",
+        "table": "enable",
+        "utf8": "enable"
     },
     "Lua.workspace.library": [
         "${addons}/busted/module/library",
         "${3rd}/luassert/library",
         "${addons}/luassert/module/library",
-        "~\\.vscode\\extensions\\ketho.wow-api-0.22.2\\Annotations\\Core",
-        "~\\.vscode\\extensions\\ketho.wow-api-0.22.2\\Annotations\\FrameXML"
+        "~\\.vscode\\extensions\\ketho.wow-api-0.22.3\\Annotations\\Core",
+        "~\\.vscode\\extensions\\ketho.wow-api-0.22.3\\Annotations\\FrameXML"
     ],
     "Lua.workspace.checkThirdParty": false
 }

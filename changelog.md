@@ -1,3 +1,7 @@
+# 2.8.1
+
+Updated for patch 12.0.5.
+
 # 2.8.0
 
 Updated for Midnight and TBC Anniversary.
